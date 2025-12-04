@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  playerHealthValue: 100
   movementFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   collisionOffset: 0.01
   meleeAttack: {fileID: 8220420834191470691}
   anim: {fileID: 8009583650675477534}
+  respawnPos: {fileID: 0}
 --- !u!50 &7985925823773460698
 Rigidbody2D:
   serializedVersion: 5
@@ -288,7 +290,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3935207097770839737}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -339,4 +341,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5ada097040f614699c584f4704f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDirection: 0
+  attackCollider: {fileID: 7384211471084268775}
+  damage: 10

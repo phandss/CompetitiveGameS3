@@ -1,56 +1,47 @@
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    public enum AttackDirection
-    {
-        Right,
-        Left
-    }
-
-    public AttackDirection attackDirection;
-
-    Vector2 RattackOffset;
-    Collider2D attackCollidor;
+    public Collider2D attackCollider;
 
 
-    private void Start()
-    {
-        attackCollidor = GetComponent<Collider2D>();
-        RattackOffset = transform.localPosition;
-    }
 
-    
-    public void StartAttack()
-    {
-        switch (attackDirection)
-        {
-            case AttackDirection.Right:
-                AttackRight();
-                break;
-            case AttackDirection.Left:
-                AttackLeft();
-                break;
-        }
-    }
-
+    public float damage = 10f;
 
     public void AttackRight()
     {
-        Debug.Log("Attack Right");
-        attackCollidor.enabled = true;
+
+        attackCollider.enabled = true;
     }
 
     public void AttackLeft()
     {
-        Debug.Log("Attack Left");
-        attackCollidor.enabled = true;
-        transform.position = new Vector2(RattackOffset.x * -1, RattackOffset.y);
+
+        attackCollider.enabled = true;
+
     }
 
     public void StopAttack()
     {
-        Debug.Log("Stop Attack");
-        attackCollidor.enabled = false;
+
+        attackCollider.enabled = false;
     }
+
+    
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+
+            EnemyController enemy = collision.GetComponent<EnemyController>();
+
+            if (enemy != null)
+            {
+                enemy.Health -= damage;
+            }
+
+        }            
+    }
+
 }
