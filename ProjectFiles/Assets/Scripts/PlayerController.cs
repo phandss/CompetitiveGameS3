@@ -110,13 +110,11 @@ public class PlayerController : MonoBehaviour
             {
                 return false;
             }
-
         }
         else
         { 
             return false;
         }
-        
     }
 
     public void RespawnPlayer()

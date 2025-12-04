@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
-        score = score + amount;
+        score += amount;
         
         if(score >= WinCon)
         {
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseLife()
     {
-        lives = lives - 1;
+        lives -= 1;
         uiManager.RemoveHeart();
 
         if (lives <= 0)
