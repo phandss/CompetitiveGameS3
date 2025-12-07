@@ -7,13 +7,14 @@ public class EnemyController : MonoBehaviour
 {
     public float health = 1;
     Animator animator;
-    public Collider2D attackbox;
+    BoxCollider2D attackbox;
     public EnemyDetection enemyDetection;
     public float moveSpeed = 2f;
     Rigidbody2D rb;
     Vector2 direction;
     private float damageCooldown = 1f;
     private float lastDamageTime;
+
 
     public float Health{
         set
@@ -38,7 +39,7 @@ public class EnemyController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
+        attackbox = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
@@ -65,7 +66,7 @@ public class EnemyController : MonoBehaviour
         GameManager.instance.AddScore(10);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OntriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

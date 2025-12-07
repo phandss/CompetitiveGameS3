@@ -253,7 +253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  attackbox: {fileID: 7386161045906492294}
   enemyDetection: {fileID: 7243059134332955473}
   moveSpeed: 0.5
 --- !u!95 &2899772188946764173
