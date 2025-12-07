@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             HandleMovement();
 
         }
-        
+
     }
 
     private void HandleMovement()
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         movementInput = movementValue.Get<Vector2>();
 
-        if(movementInput.x == 0 && movementInput.y ==0)
+        if (movementInput.x == 0 && movementInput.y == 0)
         {
             lastMoveDirection = movementInput;
         }
@@ -124,14 +124,14 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        { 
+        {
             return false;
         }
     }
 
     public void RespawnPlayer()
     {
-        
+
 
         GameManager.instance.LoseLife();
         playerHealth = 100;
@@ -142,10 +142,15 @@ public class PlayerController : MonoBehaviour
 
     void OnAbility1(InputValue value)
     {
-        if (value != null)
+        if (value != null && canUseAbility)
         {
             Debug.Log("Ability 1 Activated");
             AbilityNumber = 1;
+
+            Vector2 targetPos = GetMousePos();
+
+            fireBallAbility.TryExecuteAbility(transform.position,targetPos);
+
         }
     }
 
@@ -191,21 +196,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void AbilityUse()
-    {
-        switch(AbilityNumber)
-        {
-            case 1:
-                Debug.Log("Ability 1 Used");
-                break;
-            case 2:
-                Debug.Log("Ability 2 Used");
-                break;
-            case 3:
-                Debug.Log("Ability 3 Used");
-                break;
-            }
-        }
+
+
 
     public void TakeDamage(float damage)
     {
@@ -235,9 +227,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 GetMousePos()
     {
-        Vector2 mousePos = Input.mousePosition;
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-        return worldPos;
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Mathf.Abs(Camera.main.transform.position.z);
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
 }

@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
@@ -75,7 +76,24 @@ public class EnemyController : MonoBehaviour
                 player.TakeDamage(10);
             }
             Debug.Log("Player took damage");
-            // Here you can add code to handle player taking damage
+            
+        }
+    }
+
+
+    public void ApplyBurnDamage(float damage, float duration, float tickRate)
+    {
+        StartCoroutine(BurnDamageOverTime(damage, duration, tickRate));
+    }
+
+    private IEnumerator BurnDamageOverTime(float damage, float duration, float tickRate)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            Health -= damage;
+            yield return new WaitForSeconds(tickRate);
+            elapsed += tickRate;
         }
     }
 }

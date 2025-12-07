@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FireBallAbility : MonoBehaviour
@@ -26,6 +27,7 @@ public class FireBallAbility : MonoBehaviour
         if (isOnCooldown)
         {
             cooldownTimer -= Time.deltaTime;
+
             if (cooldownTimer <= 0f)
             {
                 isOnCooldown = false;
@@ -34,7 +36,7 @@ public class FireBallAbility : MonoBehaviour
     }
 
 
-    public bool TryExecuteAbility()
+    public bool TryExecuteAbility(Vector2 spawnPosition, Vector2 targetPosition)
     {
         if(isOnCooldown)
         {
@@ -47,7 +49,9 @@ public class FireBallAbility : MonoBehaviour
             return false;
         }
 
-        ExecuteAbility();
+        Vector2 direction = (targetPosition - spawnPosition).normalized;
+
+        ExecuteAbility(spawnPosition, targetPosition);
 
         isOnCooldown = true;
         cooldownTimer = abilityCooldown;
@@ -55,8 +59,22 @@ public class FireBallAbility : MonoBehaviour
         return true;
     }
 
-    private void ExecuteAbility()
+    private void ExecuteAbility(Vector2 spawnPosition, Vector2 targetPosition)
     {
+        GameObject fireballInstance = Instantiate(fireballPrefab, spawnPoint.position, Quaternion.identity);
         
+        FireballProjectile projectile = fireballInstance.GetComponent<FireballProjectile>();
+
+        projectile.Initialize(targetPosition);
+    }
+
+    public bool IsOnCooldown()
+    {
+        return isOnCooldown;
+    }
+
+    public float GetCooldownRemaining()
+    {
+        return Mathf.Max(0f, cooldownTimer);
     }
 }

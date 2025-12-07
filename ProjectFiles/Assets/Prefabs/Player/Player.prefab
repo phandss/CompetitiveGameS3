@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6637080477469045424}
   - component: {fileID: 8128432127406428824}
   - component: {fileID: 2212065383856116214}
+  - component: {fileID: 6053546418498405403}
   - component: {fileID: 7985925823773460698}
   - component: {fileID: 6027947876476085265}
   - component: {fileID: 8009583650675477534}
@@ -136,7 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  playerHealthValue: 100
   movementFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -153,8 +153,33 @@ MonoBehaviour:
     maxNormalAngle: 0
   collisionOffset: 0.01
   meleeAttack: {fileID: 8220420834191470691}
+  AbilityNumber: 0
+  fireBallAbility: {fileID: 0}
   anim: {fileID: 8009583650675477534}
   respawnPos: {fileID: 0}
+--- !u!114 &6053546418498405403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2690842012571303450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca70e722dfc7eb44b50c338399dfdcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 6322849325447628193, guid: 059c31e2a162d4b4aaccd8f07e162388, type: 3}
+  spawnPoint: {fileID: 4432302864366509144}
+  abilityCooldown: 5
+  speed: 10
+  explosionRadius: 2
+  detectionRadius: 2
+  travelTime: 8
+  explosionDamage: 20
+  burnDamage: 5
+  burnDuration: 4
+  burnTickRate: 1
 --- !u!50 &7985925823773460698
 Rigidbody2D:
   serializedVersion: 5
